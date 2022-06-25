@@ -1,41 +1,55 @@
-pipeline {
+pipeline 
+{
     agent any
+    tools { 
+      maven 'maven' 
+    }
 
-    stages {
+    stages 
+    {
         stage('Build') {
             steps {
-                echo 'Building the project'
+                echo('build the project')
             }
-        }
-        stage('DEV') {
-            steps {
-                echo 'Deploy to Dev'
-            }
-            
         }
         
-        stage('QA') {
+        
+        stage('Test') {
             steps {
-                echo 'Deploy to Qa'
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+                    git 'https://github.com/BenilaRaj/HybridFrameWork'
+                    bat "mvn clean install"
+                }
             }
         }
-        stage('Regression') {
-            steps {
-                echo 'Regression in Qa'
+                
+     
+        stage('Publish Allure Reports') {
+           steps {
+                script {
+                    allure([
+                        includeProperties: false,
+                        jdk: '',
+                        properties: [],
+                        reportBuildPolicy: 'ALWAYS',
+                        results: [[path: '/allure-results']]
+                    ])
+                }
             }
         }
-        stage('Sanity') {
-            steps {
-                echo 'Sanity in Qa'
-            }
-        }
-        stage('PROD') {
-            steps {
-                echo 'Deploy in  in prod'
+        
+        
+        stage('Publish Extent Report'){
+            steps{
+                     publishHTML([allowMissing: false,
+                                  alwaysLinkToLastBuild: false, 
+                                  keepAll: false, 
+                                  reportDir: 'build', 
+                                  reportFiles: 'TestExecutionReport.html', 
+                                  reportName: 'HTML Extent Report', 
+                                  reportTitles: ''])
             }
         }
     }
-    }
-
-
+}
    
