@@ -1,5 +1,6 @@
 package com.qa.freecrm.pages;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +19,7 @@ public class LoginPage {
 	private By returningCustTile = By.xpath("//h2[text()='Returning Customer']");
 	private By email = By.id("input-email");
 	private By password = By.id("input-password");
-	private By forgotPwdLink = By.xpath("//a[text()='Forgotten Password']");
+	private By forgotPwdLink = By.xpath("(//a[text()='Forgotten Password'])[1]");
 	private By loginButton = By.xpath("//input[@class='btn btn-primary']");
 	private By loginPageTiles = By.xpath("//div[@class='list-group']/a");
 
@@ -35,12 +36,12 @@ public class LoginPage {
 		return driver.getTitle();
 	}
 
-	public String getReturningCustomerTitle() {
-		return eleutil.doGetText(returningCustTile);
+	public Boolean getReturningCustomerTitle() {
+		return eleutil.waitForElementsToBeInVisible(returningCustTile, Duration.ofSeconds(1000));
 	}
 
 	public Boolean getisForgotPasswordLink() {
-		return eleutil.doIsDisplayed(forgotPwdLink);
+		return eleutil.waitForElementsToBeInVisible(forgotPwdLink, Duration.ofSeconds(1000));
 	}
 
 	public List<String> getLoginPageTiles() {

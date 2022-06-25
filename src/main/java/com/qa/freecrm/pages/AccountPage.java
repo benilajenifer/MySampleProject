@@ -15,7 +15,7 @@ public class AccountPage {
 
 	public AccountPage(WebDriver driver) {
 		this.driver = driver;
-		eleutil = new ElementUtil(driver);
+		eleutil = new ElementUtil(this.driver);
 	}
 
 	private By AccountPageHeaders = By.xpath("//h2");

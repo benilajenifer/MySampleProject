@@ -9,30 +9,34 @@ import org.testng.annotations.Test;
 import com.qa.freecrm.utility.Constants;
 
 public class LoginPageTest extends BaseTest {
-
+	@Test
 	public void verifyLoginPageTitleTest() {
 		String LoginPageTitle = loginpage.getLoginPageTitleTest();
 		Assert.assertEquals(LoginPageTitle, Constants.LOGIN_PAGE_TITLE);
 	}
 
-	public void verifytReturningCustomerTitle() {
-		String ReturningCustomerTitle = loginpage.getReturningCustomerTitle();
-		Assert.assertEquals(ReturningCustomerTitle, Constants.RETURNING_CUS_TILE);
+	@Test
+	public void verifytReturningCustomerTitleTest() {
+
+		Assert.assertTrue(loginpage.getReturningCustomerTitle());
 	}
 
-	public void verifyisForgotPasswordLink() {
+	@Test
+	public void verifyisForgotPasswordLinkTest() {
 		Boolean status = loginpage.getisForgotPasswordLink();
 		Assert.assertTrue(status);
 	}
 
-	public void verifyLoginPageTiles() {
+	@Test
+	public void verifyLoginPageTilesTest() {
 		List<String> tile = loginpage.getLoginPageTiles();
-		for (String b : tile) {
-			Assert.assertEquals(b, Constants.getLoginPageTile());
-		}
+
+		Assert.assertEquals(tile, Constants.getLoginPageTile());
+
 	}
 
-	public void verifyDoLogin() {
+	@Test
+	public void verifyDoLoginTest() {
 		accountpage = loginpage.doLogin(prop.getProperty("username"), prop.getProperty("password"));
 		Assert.assertEquals(accountpage.getAccountPageTitle(), Constants.ACCOUNTS_PAGE_TITLE);
 	}
