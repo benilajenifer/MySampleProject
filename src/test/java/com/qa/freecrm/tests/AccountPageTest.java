@@ -19,6 +19,7 @@ public class AccountPageTest extends BaseTest {
 	public void verifyAccountPageHeadersTest() {
 
 		List<String> acpge = accountpage.getAccountPageHeaders();
+		System.out.println(acpge);
 
 		Assert.assertEquals(acpge, Constants.getAccountPageSections());
 
@@ -28,6 +29,14 @@ public class AccountPageTest extends BaseTest {
 	public void verifyAccountPageTitleTest() {
 		String accPageTile = accountpage.getAccountPageTitle();
 		Assert.assertEquals(accPageTile, Constants.ACCOUNTS_PAGE_TITLE);
+	}
+	
+	@Test
+	public void selectCurrencyTest()
+	{
+		accountpage.selectCurrency();
+		
+		
 	}
 
 }

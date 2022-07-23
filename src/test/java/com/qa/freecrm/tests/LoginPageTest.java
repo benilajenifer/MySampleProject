@@ -11,14 +11,9 @@ import com.qa.freecrm.utility.Constants;
 public class LoginPageTest extends BaseTest {
 	@Test
 	public void verifyLoginPageTitleTest() {
-		String LoginPageTitle = loginpage.getLoginPageTitleTest();
-		Assert.assertEquals(LoginPageTitle, Constants.LOGIN_PAGE_TITLE);
-	}
-
-	@Test
-	public void verifytReturningCustomerTitleTest() {
-
-		Assert.assertTrue(loginpage.getReturningCustomerTitle());
+		String LoginPageTitle = loginpage.getLoginPageTitle();
+		//System.out.println(LoginPageTitle);
+	Assert.assertEquals(LoginPageTitle, Constants.LOGIN_PAGE_TITLE);
 	}
 
 	@Test
@@ -30,8 +25,8 @@ public class LoginPageTest extends BaseTest {
 	@Test
 	public void verifyLoginPageTilesTest() {
 		List<String> tile = loginpage.getLoginPageTiles();
-
-		Assert.assertEquals(tile, Constants.getLoginPageTile());
+		System.out.println(tile);
+		Assert.assertEquals(tile, Constants.getLoginPageTiles());
 
 	}
 

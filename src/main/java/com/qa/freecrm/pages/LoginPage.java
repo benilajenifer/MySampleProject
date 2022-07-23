@@ -16,12 +16,11 @@ public class LoginPage {
 
 	// private loactors:
 
-	private By returningCustTile = By.xpath("//h2[text()='Returning Customer']");
 	private By email = By.id("input-email");
 	private By password = By.id("input-password");
 	private By forgotPwdLink = By.xpath("(//a[text()='Forgotten Password'])[1]");
 	private By loginButton = By.xpath("//input[@class='btn btn-primary']");
-	private By loginPageTiles = By.xpath("//div[@class='list-group']/a");
+	private By loginPageTiles = By.cssSelector("div.list-group a");
 
 	// constructor
 
@@ -32,12 +31,8 @@ public class LoginPage {
 
 //public methods
 
-	public String getLoginPageTitleTest() {
+	public String getLoginPageTitle() {
 		return driver.getTitle();
-	}
-
-	public Boolean getReturningCustomerTitle() {
-		return eleutil.waitForElementsToBeInVisible(returningCustTile, Duration.ofSeconds(1000));
 	}
 
 	public Boolean getisForgotPasswordLink() {
@@ -45,24 +40,23 @@ public class LoginPage {
 	}
 
 	public List<String> getLoginPageTiles() {
-		List<WebElement> ele = eleutil.doGetElements(loginPageTiles);
+		List<WebElement> logintiles = eleutil.doGetElements(loginPageTiles);
 
 		List<String> newLoginTileSections = new ArrayList<String>();
 
-		for (WebElement e : ele) {
+		for (WebElement e : logintiles) {
 			newLoginTileSections.add(e.getText());
 		}
 		return newLoginTileSections;
 
 	}
-	
-	public AccountPage doLogin(String un,String pwd) 
-	{
-		eleutil.doSendKeys(email,un );
+
+	public AccountPage doLogin(String un, String pwd) {
+		eleutil.doSendKeys(email, un);
 		eleutil.doSendKeys(password, pwd);
 		eleutil.doClick(loginButton);
 		return new AccountPage(driver);
-		
+
 	}
 
 }

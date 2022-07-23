@@ -1,5 +1,6 @@
 package com.qa.freecrm.pages;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +19,9 @@ public class AccountPage {
 		eleutil = new ElementUtil(this.driver);
 	}
 
-	private By AccountPageHeaders = By.xpath("//h2");
+	private By AccountPageHeaders = By.cssSelector("div#content h2 ");
+	private By currencySelection = By.cssSelector("button.btn.btn-link.dropdown-toggle");
+	private By currencyList = By.cssSelector("button.currency-select.btn.btn-link.btn-block");
 
 	// public methods
 
@@ -36,6 +39,23 @@ public class AccountPage {
 		}
 
 		return newAccPageHead;
+	}
+
+	public void selectCurrency() {
+
+		try {
+			eleutil.getElement(currencySelection).click();
+
+			List<WebElement> dropcurr = eleutil.doGetElements(currencyList);
+			for (WebElement ele : dropcurr) {
+				ele.click();
+				eleutil.waitForElementsToBeVisible(currencySelection, Duration.ofSeconds(2));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		}
+
 	}
 
 }

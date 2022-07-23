@@ -20,17 +20,15 @@ public class BaseTest {
 	public DriverFactory driverFact;
 	public LoginPage loginpage;
 	public AccountPage accountpage;
-	
 
-	public SoftAssert softassert = new SoftAssert();
+	public SoftAssert softAssert = new SoftAssert();
 
 	@BeforeTest
 	public void setUp() {
 		driverFact = new DriverFactory();
-		prop = driverFact.int_prop();
-		driver = driverFact.int_driver(prop);
+		prop = driverFact.init_prop();
+        driver = driverFact.init_driver(prop);
 		loginpage = new LoginPage(driver);
-
 	}
 
 	@AfterTest

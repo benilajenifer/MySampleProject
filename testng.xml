@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Selenium FrameWork MyWork" verbose="4" thread-count="1"
+	parallel="tests">
+
+	<listeners>
+		<listener
+			class-name="com.qa.freecrm.listeners.ExtentReportListener" />
+		<listener
+			class-name="com.qa.freecrm.listeners.TestAllureListener" />
+		<listener
+			class-name="com.qa.freecrm.listeners.AnnotationTransformer" />
+	</listeners>
+	<test name="free crm BaseTest chrome_90">
+		<parameter name="browser" value="chrome" />
+		<parameter name="browserversion" value="90.0" />
+		<classes>
+			<class name="com.qa.freecrm.tests.BaseTest" />
+		</classes>
+
+	</test>
+	<test name="free crm loginPageTest chrome_90">
+		<parameter name="browser" value="chrome" />
+		<parameter name="browserversion" value="90.0" />
+		<classes>
+			<class name="com.qa.freecrm.tests.LoginPageTest" />
+		</classes>
+
+	</test>
+
+	<test name="free crm AccountPageTest chrome_90">
+		<parameter name="browser" value="chrome" />
+		<parameter name="browserversion" value="90.0" />
+		<classes>
+			<class name="com.qa.freecrm.tests.AccountPageTest" />
+		</classes>
+
+	</test>
+
+
+
+
+</suite> <!-- Suite -->
